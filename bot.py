@@ -2,13 +2,13 @@ import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-# ТВОЙ ТОКЕН
+# === ТВОЙ ТОКЕН ===
 TOKEN = "7949352913:AAH1EX2wgWsIb5WBgdqq4RV7R8XoVnYT3PE"
 
-# Имя PDF-файла
+# === ИМЯ PDF ===
 PDF_FILE = "AI_Контент_Гайд.pdf"
 
-# === Твои обработчики ===
+# === ОБРАБОТЧИКИ ===
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("📘 Привет! Вот твой PDF-гайд 👇")
@@ -27,17 +27,17 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def paid(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "✅ Оплата получена!\n"
-        "Вот твои шаблоны: [вставь ссылку или файл]"
+        "Вот твои шаблоны: [сюда вставь ссылку или файлы]"
     )
 
 async def partner(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "🤝 Партнёрка:\n"
-        "Рассказывай друзьям о боте и получай 50% с каждой продажи!\n"
-        "Твоя реферальная ссылка: https://t.me/aiwriterkit_bot"
+        "Рассказывай друзьям о боте и получай 50%!\n"
+        "Твоя ссылка: https://t.me/aiwriterkit_bot"
     )
 
-# === Настройка приложения ===
+# === ПРИЛОЖЕНИЕ ===
 
 app = ApplicationBuilder().token(TOKEN).build()
 
@@ -45,12 +45,12 @@ app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("paid", paid))
 app.add_handler(CommandHandler("partner", partner))
 
-# === Запуск через Webhook ===
+# === ЗАПУСК ЧЕРЕЗ WEBHOOK ===
 
 print("Бот запущен через Webhook! 🚀")
 
 app.run_webhook(
     listen="0.0.0.0",
     port=int(os.environ.get("PORT", 5000)),
-    webhook_url="https://ТВОЙ-RENDER-URL.onrender.com"
+    webhook_url="https://aiwriterkit-bot.onrender.com"
 )
